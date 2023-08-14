@@ -12,6 +12,7 @@ class UserRouter {
 
     init() {
         this.router.use(authenticateToken);
+        this.router.get("/", new UserController().getAllUser);
         this.router.get("/:id", new UserController().getUser);
         this.router.put("/", new UserController().update);
         this.router.delete("/", new UserController().delete);

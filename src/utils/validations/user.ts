@@ -29,6 +29,14 @@ class Validation {
         });
         return userSchema.validate(user);
     }
+
+    getAllUsers(user: any) {
+        const userSchema = Joi.object<any>({
+            skip: Joi.number().positive().allow(0).default(0),
+            limit: Joi.number().positive().default(10)
+        });
+        return userSchema.validate(user);
+    }
 }
 
 export const validation = new Validation;

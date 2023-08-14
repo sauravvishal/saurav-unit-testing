@@ -11,9 +11,11 @@ export const createUser = async (input: any) => {
     }
 }
 
-export const findOneUser = async (query: FilterQuery<User>) => {
-    return UserModel.findOne(query).lean();
-}
+export const findUsers = async (skip: number, limit: number) => UserModel.find().select({
+    email: 1, first_name: 1, last_name: 1, createdAt: 1, updatedAt: 1
+}).skip(skip).limit(limit).lean();
+
+export const findOneUser = async (query: FilterQuery<User>) => UserModel.findOne(query).lean();
 
 export const findUserById = async (id: string) => UserModel.findById(id).select({
     email: 1, first_name: 1, last_name: 1, createdAt: 1, updatedAt: 1
